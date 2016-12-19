@@ -7,9 +7,11 @@ const FIELD_WIDTH   = 46,
 document.addEventListener('DOMContentLoaded', () => {
     let fieldContainer = document.getElementById('field');
     let field = new Field(FIELD_WIDTH, FIELD_HEIGHT, FIELD_COLOR, fieldContainer, COLORS);
+    let head = new SnakeNode(FIELD_WIDTH / 2, parseInt(FIELD_HEIGHT / 4), null, null);
+    let snake = new Snake(head);
 
     field.init();
 
-    let controller = new Controller(field, null);
+    let controller = new Controller(field, snake, null);
     controller.runGameLoop();
 });

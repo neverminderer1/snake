@@ -1,4 +1,3 @@
-
 class Field {
     constructor (width, height, defaultColor, parentNode, colors) {
         this._width             = width;
@@ -59,6 +58,14 @@ class Field {
     }
 
     mergeFood (food) {
-        this._matrix[food.X][food.Y] = food.COLOR;
+        this._matrix[food.Y][food.X] = food.COLOR;
+    }
+
+    mergeSnake (snake) {
+        //console.log(snake.Nodes)
+        snake.Nodes.forEach(node => {
+            this._matrix[node.Y][node.X] = snake.COLOR;
+        })
+
     }
 }
