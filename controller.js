@@ -2,12 +2,18 @@ class Controller {
     constructor (field, snake, interval) {
         this._field = field;
         this._snake = snake;
-        this._inteval = interval || 200;
+        this._inteval = interval || 150;
+    }
+
+    randomField (min, max) {
+        var rand = min +Math.random() * (max + 1 - min);
+        return Math.round(rand);
     }
 
     runGameLoop () {
-        let food = new Food(this._field.WIDTH / 2, this._field.HEIGHT / 2);
-        let gameInterval = setInterval(() => {
+        this.food = new Food(this.randomField(1, this._field.WIDTH), this.randomField(1, this._field.HEIGHT));
+        var movementInterval;
+        let gameInterval = () => {
 
             document.onkeydown = event => {
                 this._snake.direction(event.keyCode);
@@ -15,18 +21,24 @@ class Controller {
 
             this._field.clear();
 
-            var move = this._snake.move(food)
+            let move = this._snake.move(this.food);
 
             if (!move) {
-                clearInterval(gameInterval);
+                clearInterval(movementInterval);
+                return false;
             } else if (move === 'grow') {
-                this._inteval -= 50;
+                this._inteval -= 10;
+                this.food = new Food(this.randomField(1, this._field.WIDTH), this.randomField(1, this._field.HEIGHT));
+                movementInterval = setInterval(gameInterval, this._inteval);
             } else {
-                this._field.mergeFood(food);
+                this._field.mergeFood(this.food);
                 this._field.mergeSnake(this._snake);
                 this._field.draw();
             }
 
-        }, this._inteval);
+        };
+
+        clearInterval(movementInterval);
+        movementInterval = setInterval(gameInterval, this._inteval);
     }
 }

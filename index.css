@@ -1,7 +1,7 @@
 #field {
-    width: 690px;
+    width: 400px;
     margin: 0 auto;
-    height: 690px;
+    height: 400px;
     background-color: #2b2b2b;
     line-height: 10px;
     border-left: 1px solid #999;
@@ -16,8 +16,8 @@
 .cell {
     display: inline-block;
 
-    width: 15px;
-    height: 15px;
+    width: 10px;
+    height: 10px;
 
     border-bottom: 1px solid #999;
     border-right: 1px solid #999;

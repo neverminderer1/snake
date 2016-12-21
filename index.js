@@ -1,5 +1,5 @@
-const FIELD_WIDTH   = 46,
-      FIELD_HEIGHT  = 46,
+const FIELD_WIDTH   = 40,
+      FIELD_HEIGHT  = 40,
       FIELD_COLOR   = '#2b2b2b';
       COLORS        = ['', 'red', 'orange', 'yellow', 'green', 'azure', 'blue', 'violet'];
 
